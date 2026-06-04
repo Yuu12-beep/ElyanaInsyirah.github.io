@@ -6,272 +6,552 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            /* ── Profile row ── */
+            .profile-row { display:flex; align-items:center; gap:1.5rem; margin-bottom:1rem; text-align:left; }
+            .profile-photo-wrap { flex-shrink:0; }
+            .profile-photo { width:110px; height:110px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.3); display:block; }
+            .profile-placeholder { width:110px; height:110px; border-radius:50%; border:2px dashed rgba(255,255,255,.35); background:rgba(255,255,255,.05); flex-direction:column; align-items:center; justify-content:center; gap:.3rem; color:rgba(255,255,255,.45); font-size:.7rem; text-align:center; cursor:default; }
+            .profile-placeholder .icon { font-size:2rem; opacity:.5; }
+            .profile-info h1 { font-size:1.4rem; margin-bottom:.4rem; }
+            .profile-info p  { font-size:.85rem; opacity:.8; margin:0; }
+
+            /* ── Resume button ── */
+            .resume-btn { display:inline-block; margin-top:.8rem; font-size:.8rem; padding:.5rem 1.4rem; }
+
+            /* ── Skill bars ── */
+            .skill-bar-wrap { margin-bottom: 1rem; }
+            .skill-bar-label { display: flex; justify-content: space-between; margin-bottom: .3rem; font-size: .85rem; }
+            .skill-bar-track { background: rgba(255,255,255,.1); border-radius: 4px; height: 8px; overflow: hidden; }
+            .skill-bar-fill  { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #6fc3df, #ffffff88); transition: width 1.2s ease; }
+
+            /* ── Timeline ── */
+            .timeline { position: relative; padding-left: 1.5rem; margin: 1rem 0; }
+            .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:rgba(255,255,255,.2); }
+            .timeline-item { position:relative; margin-bottom:1.6rem; }
+            .timeline-item::before { content:''; position:absolute; left:-1.58rem; top:.35rem; width:10px; height:10px; border-radius:50%; background:#6fc3df; border:2px solid #fff; }
+            .timeline-period { font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; opacity:.6; margin-bottom:.2rem; }
+            .timeline-title  { font-weight:700; margin:0 0 .3rem; }
+            .timeline-body   { font-size:.9rem; opacity:.85; margin:0; }
+
+            /* ── Stat chips ── */
+            .stat-chips { display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0; }
+            .chip { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:20px; padding:.35rem .9rem; font-size:.8rem; white-space:nowrap; }
+
+            /* ── Tool grid ── */
+            .tool-grid { display:flex; flex-wrap:wrap; gap:.5rem; margin:.8rem 0; }
+            .tool-tag { background:rgba(111,195,223,.15); border:1px solid rgba(111,195,223,.4); color:#b8e0f0; border-radius:4px; padding:.25rem .65rem; font-size:.78rem; }
+
+            /* ── Gap table tweaks ── */
+            .gap-badge { display:inline-block; padding:.15rem .55rem; border-radius:10px; font-size:.75rem; font-weight:700; }
+            .gap-minor    { background:rgba(80,200,120,.2);  color:#80e8a0; }
+            .gap-moderate { background:rgba(255,200,60,.18); color:#ffd96e; }
+        </style>
     </head>
     <body class="is-preload">
 
         <div id="wrapper">
 
-                <header id="header">
-                        <div class="logo">
-                            <span class="icon fa-shield-alt"></span>
-                        </div>
-                        <div class="content">
-                            <div class="inner">
+            <!-- Header -->
+            <header id="header">
+                <div class="logo">
+                    <span class="icon fa-shield-alt"></span>
+                </div>
+                <div class="content">
+                    <div class="inner">
+
+                        <!-- Profile row: photo + name/tagline side by side -->
+                        <div class="profile-row">
+                            <div class="profile-photo-wrap">
+                                <!-- Replace 'images/profile.jpg' with your actual photo filename -->
+                                <img src="images/profile.jpg"
+                                     alt="Elyana Insyirah"
+                                     class="profile-photo"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <div class="profile-placeholder" style="display:none;">
+                                    <span class="icon fa-user"></span>
+                                    <small>Add photo</small>
+                                </div>
+                            </div>
+                            <div class="profile-info">
                                 <h1>Elyana Insyirah binti Mohd Suhaimi</h1>
                                 <p>Final Year Computer Science Student | Aspiring Network Security Analyst<br />
-                                Specialized in Network Security, Penetration Testing, SQL Data Exploration and Digital Forensics.</p>
-                                
-                                <ul class="icons">
-                                    <li><a href="https://www.linkedin.com/in/elyana-insyirah-b68bb33b1" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
-                                    <li><a href="https://github.com/Yuu12-beep" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
-                                </ul>
+                                Network Security &nbsp;·&nbsp; Penetration Testing &nbsp;·&nbsp; Digital Forensics &nbsp;·&nbsp; SQL Data Exploration</p>
                             </div>
                         </div>
-                        <nav>
-                            <ul>
-                                <li><a href="#exploration">Exploration</a></li>
-                                <li><a href="#skills">Skills</a></li>
-                                <li><a href="#development">Development</a></li>
-                                <li><a href="#evidence">Evidence</a></li>
-                                <li><a href="#certificates">Certificates</a></li>
-                                <li><a href="#reflection">Reflection</a></li>
-                                <li><a href="#contact">Contact</a></li>
-                            </ul>
-                        </nav>
-                    </header>
 
-                <div id="main">
+                        <!-- Stat chips -->
+                        <div class="stat-chips">
+                            <span class="chip">📍 Perak, Malaysia</span>
+                            <span class="chip">🎓 B.CS Network Security</span>
+                            <span class="chip">⭐ CGPA 3.85 / 4.00</span>
+                            <span class="chip">🛡️ CCNA (Academic)</span>
+                            <span class="chip">💰 Expected RM 1,500 – 2,000 / month</span>
+                        </div>
 
-                        <article id="exploration">
-                                <h2 class="major">Career Exploration</h2>
-                                <span class="image main"><img src="images/netsecanalyst.jpg" alt="Cybersecurity Monitoring" /></span>
-                                
-                                <h3>Target Position: Network Security Analyst</h3>
-                                <ul>
-                                    <li><strong>Operational Defense:</strong> Serve as an organization’s first line of defense by monitoring end-to-end traffic baseline metrics.</li>
-                                    <li><strong>Threat Interception:</strong> Actively isolate, trace, and intercept unauthorized perimeter anomalies and network intrusions.</li>
-                                    <li><strong>Protective Engineering:</strong> Translate threat profiling into action by staging corporate firewalls and tuning active Intrusion Detection/Prevention Systems (IDS/IPS).</li>
-                                </ul>
-                                
-                                <h3>Required Professional Competencies</h3>
-                                <ul>
-                                    <li><strong>Traffic Analysis:</strong> Proficiency in deep-packet analysis using tools like Wireshark to isolate active indicators of compromise.</li>
-                                    <li><strong>Boundary Control:</strong> Ability to architect layered Access Control Lists (ACLs) across complex infrastructure boundaries.</li>
-                                    <li><strong>Proactive Validation:</strong> Execution of testing pipelines using Kali Linux environments to catch structural blindspots before threat actors exploit them.</li>
-                                </ul>
-                                
-                                <h4>Industry Relevance Statement</h4>
-                                <ul>
-                                    <li><strong>Scaling Risks:</strong> As corporate networks scale across global cloud platforms, unhardened perimeters leave sensitive infrastructure highly vulnerable to edge-traversal vectors.</li>
-                                    <li><strong>Operational Assurance:</strong> Active security engineering ensures digital processing hubs maintain continuous operational availability.</li>
-                                    <li><strong>Data Confidentiality:</strong> Analysts provide the necessary human oversight to guarantee data path confidentiality against sophisticated threat groups.</li>
-                                </ul>
-                                
-                                <br />
-                                <ul class="actions fit">
-                                    <li><a href="#skills" class="button primary fit">Skills Assessments</a></li>
-                                </ul>
-                            </article>
+                        <!-- Social icons -->
+                        <ul class="icons">
+                            <li><a href="https://www.linkedin.com/in/elyana-insyirah-b68bb33b1" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/Yuu12-beep" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
+                        </ul>
 
-                        <article id="skills">
-                                <h2 class="major">Skills Assessments</h2>
-                                
-                                <h3>Core Engineering Tool Stack</h3>
-                                <ul class="alt">
-                                    <li><strong>Network Infrastructure Architecture:</strong> High-availability blueprints, layout design, and multi-layer structural routing protocols.</li>
-                                    <li><strong>Defensive & Investigative Operations:</strong> Digital evidence extraction, vulnerability identification, and file system carving.</li>
-                                    <li><strong>Data Architecture Management:</strong> Complex query drafting, relational database filtering, and data extraction patterns.</li>
-                                    <li><strong>Scripting Fundamentals & Environments:</strong> Logic parsing using Python, shell operations, and Kali Linux tool administration.</li>
-                                </ul>
-
-                                <h3>Professional Soft Skills</h3>
-                                <p>Strong bilingual communicator (Native Malay & Fluent English) with an analytical approach to project pacing. Capable of performing efficiently under demanding delivery timelines and coordinating effectively within teams.</p>
-
-                                <h3>Competency Gap Matrix</h3>
-                                <div class="table-wrapper">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Skill Area</th>
-                                                <th>Current Foundation</th>
-                                                <th>Target Industry Milestone</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Infrastructure Simulation</td>
-                                                <td>Intermediate labs (Cisco Packet Tracer)</td>
-                                                <td>Enterprise production scale deployments</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Threat Exploitation Flow</td>
-                                                <td>Guided framework validation (Kali Linux)</td>
-                                                <td>Unassisted manual infrastructure verification</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Architectural Troubleshooting</td>
-                                                <td>Academic environment testing</td>
-                                                <td>Autonomous enterprise incidence response</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p><em>Assessment Note:</em> While my current execution profile operates at an intermediate level, my comprehensive mastery of fundamental network mechanics lets me quickly adapt to enterprise workflows and target advanced professional industry certifications.</p>
-
-                                <br />
-                                <ul class="actions fit">
-                                    <li><a href="#exploration" class="button fit">Career Exploration</a></li>
-                                    <li><a href="#development" class="button primary fit">Development Plan</a></li>
-                                </ul>
-                            </article>
-
-                        <article id="development">
-                                <h2 class="major">Development Plan</h2>
-                                <span class="image main"><img src="images/best-network-security-tools.jpg" alt="Development Frameworks" /></span>
-                                
-                                <h3>Core Technical Toolkit Focus</h3>
-                                <p>To transition effectively into enterprise security environments, my immediate technical preparation focuses on mastering these four core tool layers:</p>
-                                <pre><code>[Security] -> Kali Linux, Metasploit, Wireshark, PEiD, Dependency Walker, PEview, BinText
-[Forensics] -> Autopsy, FTK Imager, BCText Encoder
-[Network Infrastructure] -> Cisco Packet Tracer, GNS3 Lab Topologies
-[Database Engineering]  -> Microsoft SQL Server, XAMPP Environments</code></pre>
-
-                                <h3>Strategic Career Timeline</h3>
-                                <h4>Short-Term Benchmarks (Years 1–2)</h4>
-                                <p>Focus on establishing complete operational mastery within an entry-level security team role. Build strong relationships with the team, take direct responsibility for local threat scanning routines, and secure foundational certifications like CompTIA Security+ and Cisco CCNA to validate core technical capabilities.</p>
-                                
-                                <h4>Long-Term Objectives (Years 3–5)</h4>
-                                <p>Progress into specialized senior engineering tracks or team leadership positions. Aim to design complex multi-layered infrastructure defenses, oversee large-scale threat-hunting operations, and build a structured mentorship pipeline to guide incoming junior security specialists.</p>
-
-                                <br />
-                                <ul class="actions fit">
-                                    <li><a href="#skills" class="button fit">Skills Assessments</a></li>
-                                    <li><a href="#evidence" class="button primary fit">Evidence of Learning</a></li>
-                                </ul>
-                            </article>
-
-                        <article id="evidence">
-                                <h2 class="major">Evidence of Learning</h2>
-                                <h3>Courses Taken</h3>
-
-                                <hr />
-
-                                <h3>Projects</h3>
-
-                                <span class="image main"><img src="images/Screenshot 2026-06-04 112843.png" alt="Project Repositories" /></span>
-                                
-                                <h4>Enhancing Hospital Network Resilience using Redundancy Protocols</h4>
-                                <p>An empirical performance analysis that evaluated healthcare delivery network infrastructure using Cisco Packet Tracer. The study simulated network recovery windows by testing HSRP and RSTP redundancy configurations against traditional non-redundant core topologies to prevent critical operational downtime.</p>
-                                <ul class="actions">
-                                    <li><a href="https://github.com/Yuu12-beep/Enhancing-Hospital-Network-Resilience-using-Redundancy-Protocols." class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
-                                </ul>
- 
-                                <span class="image main"><img src="images/malware.jpg" alt="Project Repositories" /></span>
-                                <h4>Static Malware Analysis</h4>
-                                <p>Performing malware analysis without running it using several tools like PEiD and Dependency Walker and writing detailed reports on the findings.</p>
-                                <ul class="actions">
-                                    <li><a href="https://github.com/Yuu12-beep/Static-Malware-Analysis" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
-                                </ul>
-
-                                <h4>Academic Labs</h4>
-                                <ul>
-                                    <li><strong>Digital Forensics & Evidence Extraction:</strong> Handled complete investigative passes over compromised host disk files, tracking system file metadata and carving artifact files using Autopsy.</li>
-                                    <li><strong>Infrastructure Penetration Testing:</strong> Constructed controlled vulnerability validation runs utilizing Kali Linux, deploying discovery scans via Nmap and testing target software hooks using Metasploit.</li>
-                                </ul>
-
-                                <br />
-                                <ul class="actions fit">
-                                    <li><a href="#development" class="button fit">Development Plan</a></li>
-                                    <li><a href="#certificates" class="button primary fit">Certificates</a></li>
-                                </ul>
-                            </article>
-
-                        <article id="certificates">
-                                <h2 class="major">Certificates</h2>
-                                <p>Professional technical qualifications and specialized industry training programs:</p>
-                                <ul class="alt">
-                                    <li><strong>Cisco Certified Network Associate (CCNA):</strong> Technical training program completed (Academic Foundation).</li>
-                                    <li><strong>CompTIA Security+:</strong> Target professional development milestone.</li>
-                                    <li><strong>Academic Lab Technical Completions:</strong> Certified practical execution across Digital Forensics, Static Malware Analysis, and Database Engineering.</li>
-                                </ul>
-
-                                <br />
-                                <ul class="actions fit">
-                                    <li><a href="#evidence" class="button fit">Evidence of Learning</a></li>
-                                    <li><a href="#reflection" class="button primary fit">Reflection</a></li>
-                                </ul>
-                        </article>
-                            
-                        <article id="reflection">
-                                <h2 class="major">Reflection</h2>
-                                
-                                <h3>Strategic Alignment: Target Organization (Microsoft)</h3>
-                                <span class="image main"><img src="images/msft-microsoft-logo-2-3.webp" alt="Microsoft" /></span>
-                                <ul>
-                                    <li><strong>Unmatched Scale:</strong> Drawn to Microsoft’s massive security ecosystem, which processes billions of daily telemetry signals across Azure and enterprise services.</li>
-                                    <li><strong>Strategic Mission:</strong> Specifically aligned with the <strong>Secure Future Initiative (SFI)</strong> to help redesign modern computing foundations.</li>
-                                    <li><strong>Modern Defense:</strong> Eager to contribute to automated zero-trust authorization systems and built-in cloud defenses.</li>
-                                    <li><strong>Countering Next-Gen Risks:</strong> Motivated to join the engineering teams directly defining how the industry counters advanced risks like Adversary-in-the-Middle (AiTM) identity intercepts.</li>
-                                </ul>
-
-                                <h3>Personal Value Proposition</h3>
-                                <ul>
-                                    <li><strong>Infrastructure Expertise:</strong> Proven ability to build and stabilize enterprise-scale connections, demonstrated through capstone research on high-availability hospital networks.</li>
-                                    <li><strong>Offensive Perspective:</strong> Deep practical lab experience in penetration testing and digital forensics provides a distinct defensive advantage.</li>
-                                    <li><strong>Dual-Minded Approach:</strong> I don't just understand how to secure a network path; I know exactly how an adversary intends to break it, allowing me to review security configurations with a critical, predictive eye.</li>
-                                </ul>
-                                
-                                <h3>Professional Strengths & Growth Areas</h3>
-                                <ul>
-                                    <li><strong>Core Strengths:</strong> Systematic attention to detail during complex system deployments, a highly collaborative approach inside engineering teams, and a focused drive to learn under tight timelines.</li>
-                                    <li><strong>Target Improvement Area:</strong> Currently have an intermediate reliance on senior verification when deploying large-scale enterprise systems.</li>
-                                    <li><strong>Action Plan:</strong> Actively managing this by independently testing more complex network simulations, maintaining a receptive learning posture, and working closely with senior mentors to build complete technical autonomy.</li>
-                                </ul>
-
-                                <br />
-                                <ul class="actions fit">
-                                    <li><a href="#certificates" class="button fit">Certificates</a></li>
-                                    <li><a href="#contact" class="button primary fit">Contact</a></li>
-                                </ul>
-                            </article>
-
-                            <article id="contact">
-                                <h2 class="major">Contact</h2>
-                                
-                                <p>Feel free to reach out through any of the following channels for technical inquiries or professional opportunities:</p>
-                                <ul class="alt">
-                                    <li><strong>Location:</strong> Perak, Malaysia</li>
-                                    <li><strong>Contact Number:</strong> (+60) 17-4410205</li>
-                                    <li><strong>Professional Email:</strong> insyirahelyana@gmail.com</li>
-                                </ul>
-                                
-                                <ul class="icons">
-                                    <li><a href="https://www.linkedin.com/in/elyana-insyirah-b68bb33b1" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
-                                    <li><a href="https://github.com/Yuu12-beep" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
-                                </ul>
-
-                                <br />
-                                <ul class="actions fit">
-                                    <li><a href="#reflection" class="button fit">Reflection</a></li>
-                                    <li><a href="#" class="button primary fit">Return Home</a></li>
-                                </ul>
-                            </article>
+                        <!-- Resume download button -->
+                        <!-- Replace 'files/resume.pdf' with the actual path to your resume file -->
+                        <a href="files/resume.pdf" download="Elyana_Insyirah_Resume.pdf" class="button primary resume-btn">
+                            <span class="icon fa-download"></span> &nbsp;Download Resume
+                        </a>
 
                     </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#exploration">Exploration</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#development">Development</a></li>
+                        <li><a href="#evidence">Evidence</a></li>
+                        <li><a href="#certificates">Certificates</a></li>
+                        <li><a href="#reflection">Reflection</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
 
-                <footer id="footer">
-                        <p class="copyright">&copy; Elyana Insyirah. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                    </footer>
+            <div id="main">
+
+                <!-- ══════════════════════════════════════
+                     CAREER EXPLORATION
+                ══════════════════════════════════════ -->
+                <article id="exploration">
+                    <h2 class="major">Career Exploration</h2>
+                    <span class="image main"><img src="images/netsecanalyst.jpg" alt="Cybersecurity Monitoring" /></span>
+
+                    <h3>Target Position: Network Security Analyst</h3>
+                    <p>A Network Security Analyst sits at the intersection of infrastructure engineering and active defence — monitoring live traffic, intercepting intrusions, and hardening the perimeter before threat actors find a foothold.</p>
+
+                    <h4>Core Responsibilities</h4>
+                    <ul>
+                        <li><strong>Operational Defence:</strong> Monitor end-to-end traffic baselines and serve as the organisation's first detection layer for anomalous behaviour.</li>
+                        <li><strong>Threat Interception:</strong> Isolate, trace, and neutralise unauthorised perimeter anomalies and active network intrusions in real time.</li>
+                        <li><strong>Protective Engineering:</strong> Translate threat-profiling data into action — staging firewalls, tuning IDS/IPS rules, and enforcing layered ACL policies.</li>
+                    </ul>
+
+                    <h4>Key Technical Competencies Required</h4>
+                    <div class="tool-grid">
+                        <span class="tool-tag">Wireshark / Deep-Packet Analysis</span>
+                        <span class="tool-tag">IDS / IPS Tuning</span>
+                        <span class="tool-tag">Firewall Architecture</span>
+                        <span class="tool-tag">ACL Design</span>
+                        <span class="tool-tag">Kali Linux</span>
+                        <span class="tool-tag">Nmap / Enumeration</span>
+                        <span class="tool-tag">SIEM Platforms</span>
+                        <span class="tool-tag">Vulnerability Assessment</span>
+                    </div>
+
+                    <h4>Why This Role Matters</h4>
+                    <ul>
+                        <li><strong>Expanding Attack Surface:</strong> As corporate networks scale across global cloud platforms, unhardened perimeters become high-value targets for edge-traversal vectors.</li>
+                        <li><strong>Operational Continuity:</strong> Active security engineering ensures critical digital infrastructure maintains uninterrupted availability.</li>
+                        <li><strong>Data Confidentiality:</strong> Human-in-the-loop oversight guarantees data-path confidentiality against sophisticated, persistent threat groups.</li>
+                    </ul>
+
+                    <br />
+                    <ul class="actions fit">
+                        <li><a href="#skills" class="button primary fit">Skills Assessment</a></li>
+                    </ul>
+                </article>
+
+                <!-- ══════════════════════════════════════
+                     SKILLS ASSESSMENT
+                ══════════════════════════════════════ -->
+                <article id="skills">
+                    <h2 class="major">Skills Assessment</h2>
+                    <p>An honest self-assessment of where I currently stand against what the industry expects of a Network Security Analyst, based on coursework, academic labs, and personal projects.</p>
+
+                    <h3>Technical Skills</h3>
+
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Network Infrastructure (Cisco Packet Tracer / GNS3)</span><span>80%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Redundancy Protocols (HSRP, RSTP, EtherChannel)</span><span>78%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Packet Analysis (Wireshark)</span><span>72%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Penetration Testing (Kali Linux / Metasploit / Nmap)</span><span>65%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Static Malware Analysis (PEiD, Dependency Walker, PEview)</span><span>68%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:68%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Digital Forensics (Autopsy / FTK Imager)</span><span>65%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Database Engineering (SQL / XAMPP)</span><span>70%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Python / Shell Scripting</span><span>55%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div>
+                    </div>
+
+                    <h3>Soft Skills</h3>
+
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Analytical Problem-Solving</span><span>88%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Bilingual Communication (Malay & English)</span><span>90%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Team Collaboration</span><span>85%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+                    </div>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label"><span>Delivery Under Tight Timelines</span><span>82%</span></div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
+                    </div>
+
+                    <h3>Competency Gap Matrix</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Skill Area</th>
+                                    <th>Industry Requirement</th>
+                                    <th>My Current Level</th>
+                                    <th>Gap</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Network Infrastructure</td>
+                                    <td>Enterprise-scale deployments, BGP, OSPF</td>
+                                    <td>Cisco Packet Tracer, HSRP, RSTP (intermediate labs)</td>
+                                    <td><span class="gap-badge gap-minor">Minor</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Threat Exploitation</td>
+                                    <td>Unassisted manual infrastructure verification</td>
+                                    <td>Guided framework validation (Kali Linux, Metasploit)</td>
+                                    <td><span class="gap-badge gap-moderate">Moderate</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Network Monitoring</td>
+                                    <td>SIEM, SNMP, SolarWinds, NetFlow</td>
+                                    <td>Wireshark and Nmap (lab-level)</td>
+                                    <td><span class="gap-badge gap-moderate">Moderate</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Incident Response</td>
+                                    <td>Autonomous enterprise-grade response</td>
+                                    <td>Academic environment testing</td>
+                                    <td><span class="gap-badge gap-moderate">Moderate</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Digital Forensics</td>
+                                    <td>Court-admissible evidence handling</td>
+                                    <td>Autopsy / FTK Imager (academic investigations)</td>
+                                    <td><span class="gap-badge gap-minor">Minor</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><em>Assessment note:</em> While my execution profile is at an intermediate level, my solid grasp of network fundamentals and security concepts lets me adapt quickly to enterprise workflows and target advanced certifications in the short term.</p>
+
+                    <br />
+                    <ul class="actions fit">
+                        <li><a href="#exploration" class="button fit">Career Exploration</a></li>
+                        <li><a href="#development" class="button primary fit">Development Plan</a></li>
+                    </ul>
+                </article>
+
+                <!-- ══════════════════════════════════════
+                     DEVELOPMENT PLAN
+                ══════════════════════════════════════ -->
+                <article id="development">
+                    <h2 class="major">Development Plan</h2>
+                    <span class="image main"><img src="images/best-network-security-tools.jpg" alt="Development Frameworks" /></span>
+
+                    <h3>Core Technical Toolkit</h3>
+                    <div class="tool-grid">
+                        <span class="tool-tag">Kali Linux</span>
+                        <span class="tool-tag">Metasploit</span>
+                        <span class="tool-tag">Wireshark</span>
+                        <span class="tool-tag">Nmap</span>
+                        <span class="tool-tag">PEiD</span>
+                        <span class="tool-tag">Dependency Walker</span>
+                        <span class="tool-tag">PEview</span>
+                        <span class="tool-tag">BinText</span>
+                        <span class="tool-tag">Autopsy</span>
+                        <span class="tool-tag">FTK Imager</span>
+                        <span class="tool-tag">BCText Encoder</span>
+                        <span class="tool-tag">Cisco Packet Tracer</span>
+                        <span class="tool-tag">GNS3</span>
+                        <span class="tool-tag">MS SQL Server</span>
+                        <span class="tool-tag">XAMPP</span>
+                    </div>
+
+                    <h3>Career Timeline</h3>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-period">Now — 2026 (Immediate)</div>
+                            <div class="timeline-title">Complete Degree &amp; Earn Core Certifications</div>
+                            <p class="timeline-body">Graduate with a strong academic record in B.CS (Network Security). Earn CompTIA Security+ and complete the full CCNA certification exam to validate entry-level technical competencies.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-period">2026 — 2027 (Short-Term)</div>
+                            <div class="timeline-title">Junior Network / Security Analyst</div>
+                            <p class="timeline-body">Join an entry-level security team. Build ownership over local threat-scanning routines, master enterprise firewall and SIEM tooling, and deepen Linux CLI proficiency through daily production use.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-period">2027 — 2029 (Mid-Term)</div>
+                            <div class="timeline-title">Mid-Level Security Engineer</div>
+                            <p class="timeline-body">Pursue CompTIA CySA+ and CCNP Security. Take responsibility for VLAN redesigns, VPN policy management, and firewall rule reviews. Develop cloud security exposure across Azure or AWS environments.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-period">2029 — 2031 (Long-Term Goal)</div>
+                            <div class="timeline-title">Senior Security Analyst / Team Lead</div>
+                            <p class="timeline-body">Design complex multi-layered infrastructure defences, oversee large-scale threat-hunting operations, and build a structured mentorship pipeline to guide incoming junior security specialists.</p>
+                        </div>
+                    </div>
+
+                    <h3>Target Certifications</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Certification</th><th>Body</th><th>Status</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>CCNA (Academic Foundation)</td><td>Cisco</td><td>✅ Completed</td></tr>
+                                <tr><td>CompTIA Security+</td><td>CompTIA</td><td>🎯 Target (2026)</td></tr>
+                                <tr><td>CompTIA CySA+</td><td>CompTIA</td><td>📅 Planned (2027–28)</td></tr>
+                                <tr><td>CCNP Security</td><td>Cisco</td><td>📅 Planned (2028–29)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <ul class="actions fit">
+                        <li><a href="#skills" class="button fit">Skills Assessment</a></li>
+                        <li><a href="#evidence" class="button primary fit">Evidence of Learning</a></li>
+                    </ul>
+                </article>
+
+                <!-- ══════════════════════════════════════
+                     EVIDENCE OF LEARNING
+                ══════════════════════════════════════ -->
+                <article id="evidence">
+                    <h2 class="major">Evidence of Learning</h2>
+
+                    <h3>Projects</h3>
+
+                    <span class="image main"><img src="images/Screenshot 2026-06-04 112843.png" alt="Hospital Network Resilience Project" /></span>
+                    <h4>Enhancing Hospital Network Resilience using Redundancy Protocols</h4>
+                    <p>An empirical performance study evaluating healthcare delivery network infrastructure using Cisco Packet Tracer. Simulated recovery windows by testing <strong>HSRP</strong> and <strong>RSTP</strong> redundancy configurations against traditional non-redundant core topologies — demonstrating measurable improvements in failover time and uptime continuity for critical medical operations.</p>
+                    <div class="tool-grid" style="margin-bottom:.8rem">
+                        <span class="tool-tag">Cisco Packet Tracer</span>
+                        <span class="tool-tag">HSRP</span>
+                        <span class="tool-tag">RSTP</span>
+                        <span class="tool-tag">Network Topology Design</span>
+                    </div>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Yuu12-beep/Enhancing-Hospital-Network-Resilience-using-Redundancy-Protocols." class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                    </ul>
+
+                    <span class="image main"><img src="images/malware.jpg" alt="Static Malware Analysis" /></span>
+                    <h4>Static Malware Analysis</h4>
+                    <p>Performed thorough static analysis of malware samples <em>without executing them</em>, using a professional toolchain to examine PE headers, imported DLLs, embedded strings, and structural indicators of compromise. Produced detailed technical reports on each sample's probable behaviour and threat classification.</p>
+                    <div class="tool-grid" style="margin-bottom:.8rem">
+                        <span class="tool-tag">PEiD</span>
+                        <span class="tool-tag">Dependency Walker</span>
+                        <span class="tool-tag">PEview</span>
+                        <span class="tool-tag">BinText</span>
+                    </div>
+                    <ul class="actions">
+                        <li><a href="https://github.com/Yuu12-beep/Static-Malware-Analysis" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                    </ul>
+
+                    <h3>Academic Labs</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Lab</th><th>Tools Used</th><th>Key Outcome</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Digital Forensics &amp; Evidence Extraction</strong></td>
+                                    <td>Autopsy, FTK Imager</td>
+                                    <td>Full investigative passes over compromised host disks; metadata tracking and artifact carving</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Infrastructure Penetration Testing</strong></td>
+                                    <td>Kali Linux, Nmap, Metasploit</td>
+                                    <td>Controlled discovery scans and vulnerability exploitation in sandboxed environments</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>SQL Data Exploration</strong></td>
+                                    <td>MS SQL Server, XAMPP</td>
+                                    <td>Complex query drafting, relational filtering, and structured data extraction</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <ul class="actions fit">
+                        <li><a href="#development" class="button fit">Development Plan</a></li>
+                        <li><a href="#certificates" class="button primary fit">Certificates</a></li>
+                    </ul>
+                </article>
+
+                <!-- ══════════════════════════════════════
+                     CERTIFICATES
+                ══════════════════════════════════════ -->
+                <article id="certificates">
+                    <h2 class="major">Certificates</h2>
+                    <p>Professional technical qualifications and specialised industry training completions:</p>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Qualification</th><th>Issuing Body</th><th>Status</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Cisco Certified Network Associate (CCNA)</strong><br/><small>Switching, Routing &amp; Wireless — academic foundation</small></td>
+                                    <td>Cisco</td>
+                                    <td>✅ Completed</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CompTIA Security+</strong><br/><small>Professional development milestone</small></td>
+                                    <td>CompTIA</td>
+                                    <td>🎯 In Progress</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Digital Forensics — Lab Practical</strong><br/><small>Autopsy, FTK Imager — full disk investigation</small></td>
+                                    <td>UniSZA Academic</td>
+                                    <td>✅ Completed</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Static Malware Analysis — Lab Practical</strong><br/><small>PE analysis toolchain, threat reporting</small></td>
+                                    <td>UniSZA Academic</td>
+                                    <td>✅ Completed</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Database Engineering — Lab Practical</strong><br/><small>SQL Server, XAMPP data environments</small></td>
+                                    <td>UniSZA Academic</td>
+                                    <td>✅ Completed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <ul class="actions fit">
+                        <li><a href="#evidence" class="button fit">Evidence of Learning</a></li>
+                        <li><a href="#reflection" class="button primary fit">Reflection</a></li>
+                    </ul>
+                </article>
+
+                <!-- ══════════════════════════════════════
+                     REFLECTION
+                ══════════════════════════════════════ -->
+                <article id="reflection">
+                    <h2 class="major">Reflection</h2>
+
+                    <h3>Dream Organisation: Microsoft</h3>
+                    <span class="image main"><img src="images/msft-microsoft-logo-2-3.webp" alt="Microsoft" /></span>
+
+                    <h4>Why Microsoft?</h4>
+                    <p>Microsoft processes billions of daily security telemetry signals across Azure and enterprise services — that scale is exactly what draws me in. I am specifically aligned with the <strong>Secure Future Initiative (SFI)</strong>, which is redesigning modern computing foundations from the ground up rather than patching legacy gaps. The opportunity to contribute to automated zero-trust authorisation systems and built-in cloud defences — and to work directly on countering next-generation threats like Adversary-in-the-Middle (AiTM) identity intercepts — is genuinely motivating, not just a career checkbox.</p>
+
+                    <h4>Value I Bring</h4>
+                    <p>My capstone research on hospital network redundancy demonstrates the ability to engineer enterprise-scale, high-availability connections under real constraints. My hands-on penetration testing and forensics labs give me an offensive perspective that most entry-level analysts lack — I don't just know how to secure a network path, I understand precisely how an adversary intends to break it. That dual-minded approach lets me review security configurations with a critical, predictive eye.</p>
+
+                    <h3>Strengths &amp; Growth Areas</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Category</th><th>Detail</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Core Strengths</strong></td>
+                                    <td>Systematic attention to detail during complex deployments; collaborative approach inside engineering teams; strong drive to learn under tight timelines; bilingual communication (Malay &amp; English)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Offensive Mindset</strong></td>
+                                    <td>Deep practical exposure to penetration testing and forensics provides a distinct defensive advantage — I anticipate attacker behaviour rather than only reacting to it</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Target Improvement</strong></td>
+                                    <td>Intermediate reliance on senior verification when deploying large-scale enterprise systems — actively addressing through independent simulations and mentor-guided projects</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Action Plan</strong></td>
+                                    <td>Independently testing complex GNS3 network topologies, maintaining a receptive learning posture, and working closely with senior mentors to build complete technical autonomy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <ul class="actions fit">
+                        <li><a href="#certificates" class="button fit">Certificates</a></li>
+                        <li><a href="#contact" class="button primary fit">Contact</a></li>
+                    </ul>
+                </article>
+
+                <!-- ══════════════════════════════════════
+                     CONTACT
+                ══════════════════════════════════════ -->
+                <article id="contact">
+                    <h2 class="major">Contact</h2>
+                    <p>Feel free to reach out through any of the following channels for technical inquiries or professional opportunities:</p>
+                    <ul class="alt">
+                        <li><strong>📍 Location:</strong> Perak, Malaysia</li>
+                        <li><strong>📞 Contact Number:</strong> (+60) 17-4410205</li>
+                        <li><strong>✉️ Professional Email:</strong> <a href="mailto:insyirahelyana@gmail.com">insyirahelyana@gmail.com</a></li>
+                    </ul>
+
+                    <ul class="icons">
+                        <li><a href="https://www.linkedin.com/in/elyana-insyirah-b68bb33b1" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+                        <li><a href="https://github.com/Yuu12-beep" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
+                    </ul>
+
+                    <br />
+                    <ul class="actions fit">
+                        <li><a href="#reflection" class="button fit">Reflection</a></li>
+                        <li><a href="#" class="button primary fit">Return Home</a></li>
+                    </ul>
+                </article>
 
             </div>
+
+            <footer id="footer">
+                <p class="copyright">&copy; Elyana Insyirah. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+            </footer>
+
+        </div>
 
         <div id="bg"></div>
 
         <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/browser.min.js"></script>
-            <script src="assets/js/breakpoints.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <script src="assets/js/main.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
 
     </body>
 </html>
