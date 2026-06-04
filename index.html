@@ -7,18 +7,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <style>
-            /* ── Profile row ── */
-            .profile-row { display:flex; align-items:center; gap:1.5rem; margin-bottom:1rem; text-align:left; }
-            .profile-photo-wrap { flex-shrink:0; }
-            .profile-photo { width:110px; height:110px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.3); display:block; }
-            .profile-placeholder { width:110px; height:110px; border-radius:50%; border:2px dashed rgba(255,255,255,.35); background:rgba(255,255,255,.05); flex-direction:column; align-items:center; justify-content:center; gap:.3rem; color:rgba(255,255,255,.45); font-size:.7rem; text-align:center; cursor:default; }
-            .profile-placeholder .icon { font-size:2rem; opacity:.5; }
-            .profile-info h1 { font-size:1.4rem; margin-bottom:.4rem; }
-            .profile-info p  { font-size:.85rem; opacity:.8; margin:0; }
-
-            /* ── Resume button ── */
-            .resume-btn { display:inline-block; margin-top:.8rem; font-size:.8rem; padding:.5rem 1.4rem; }
-
             /* ── Skill bars ── */
             .skill-bar-wrap { margin-bottom: 1rem; }
             .skill-bar-label { display: flex; justify-content: space-between; margin-bottom: .3rem; font-size: .85rem; }
@@ -35,24 +23,64 @@
             .timeline-body   { font-size:.9rem; opacity:.85; margin:0; }
 
             /* ── Stat chips ── */
-            .stat-chips { display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0; }
+            .stat-chips { display:flex; flex-wrap:wrap; justify-content: center; gap:.6rem; margin:1.5rem 0; }
             .chip { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:20px; padding:.35rem .9rem; font-size:.8rem; white-space:nowrap; }
 
             /* ── Tool grid ── */
             .tool-grid { display:flex; flex-wrap:wrap; gap:.5rem; margin:.8rem 0; }
             .tool-tag { background:rgba(111,195,223,.15); border:1px solid rgba(111,195,223,.4); color:#b8e0f0; border-radius:4px; padding:.25rem .65rem; font-size:.78rem; }
 
+            /* ── Profile row ── */
+            .profile-row { display:flex; align-items:center; justify-content: center; gap:1.5rem; margin-bottom:1rem; text-align:left; }
+            .profile-photo-wrap { flex-shrink:0; }
+            .profile-photo { width:110px; height:110px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.3); display:block; margin: 0 auto; }
+            .profile-placeholder { width:110px; height:110px; border-radius:50%; border:2px dashed rgba(255,255,255,.35); background:rgba(255,255,255,.05); flex-direction:column; align-items:center; justify-content:center; gap:.3rem; color:rgba(255,255,255,.45); font-size:.7rem; text-align:center; cursor:default; margin: 0 auto; }
+            .profile-placeholder .icon { font-size:2rem; opacity:.5; }
+            .profile-info h1 { font-size:1.4rem; margin-bottom:.4rem; line-height: 1.3; }
+            .profile-info p  { font-size:.85rem; opacity:.8; margin:0; line-height: 1.5; }
+
+            /* ── Resume button ── */
+            .resume-btn { display:inline-block; margin-top:.5rem; font-size:.8rem; padding:.5rem 1.4rem; }
+
             /* ── Gap table tweaks ── */
             .gap-badge { display:inline-block; padding:.15rem .55rem; border-radius:10px; font-size:.75rem; font-weight:700; }
             .gap-minor    { background:rgba(80,200,120,.2);  color:#80e8a0; }
             .gap-moderate { background:rgba(255,200,60,.18); color:#ffd96e; }
+
+            /* ── Certificates Grid Fixes ── */
+            .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0; }
+            .cert-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; padding: 1.2rem; text-align: center; cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; justify-content: space-between; }
+            .cert-item:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(111, 195, 223, 0.5); transform: translateY(-3px); }
+            .cert-img-wrap { width: 100%; height: 150px; background: rgba(0, 0, 0, 0.2); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; border: 1px dashed rgba(255, 255, 255, 0.15); }
+            .cert-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; padding: 6px; }
+            .cert-meta { margin-top: auto; }
+            .cert-title { font-weight: 700; font-size: 0.9rem; margin: 0 0 0.4rem 0; line-height: 1.3; color: #fff; letter-spacing: 0.05em; }
+            .cert-desc { font-size: 0.78rem; opacity: 0.65; margin: 0; line-height: 1.4; }
+
+            /* ── Lightbox Modal ── */
+            .cert-modal-overlay { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(6px); align-items: center; justify-content: center; flex-direction: column; opacity: 0; transition: opacity 0.3s ease; }
+            .cert-modal-overlay.active { display: flex; opacity: 1; }
+            .cert-modal-content { margin: auto; display: block; max-width: 85%; max-height: 70%; border-radius: 4px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.1); }
+            .cert-modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: 300; transition: 0.2s; cursor: pointer; line-height: 1; }
+            .cert-modal-close:hover { color: #6fc3df; }
+            #cert-modal-caption { margin: 15px auto auto auto; width: 80%; max-width: 700px; text-align: center; color: #fff; font-size: 0.95rem; line-height: 1.5; }
+
+            /* Responsive Adjustments */
+            @media screen and (max-width: 736px) {
+                .profile-row { flex-direction: column; text-align: center; gap: 1rem; }
+                .profile-info h1 { font-size: 1.25rem; }
+                .stat-chips { gap: 0.4rem; margin: 1rem 0; }
+                .chip { font-size: 0.75rem; padding: 0.3rem 0.7rem; }
+                .resume-btn { margin-top: 1rem; }
+                .cert-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+                .cert-img-wrap { height: 170px; }
+            }
         </style>
     </head>
     <body class="is-preload">
 
         <div id="wrapper">
 
-            <!-- Header -->
             <header id="header">
                 <div class="logo">
                     <span class="icon fa-shield-alt"></span>
@@ -60,10 +88,8 @@
                 <div class="content">
                     <div class="inner">
 
-                        <!-- Profile row: photo + name/tagline side by side -->
                         <div class="profile-row">
                             <div class="profile-photo-wrap">
-                                <!-- Replace 'images/profile.jpg' with your actual photo filename -->
                                 <img src="images/profile.jpg"
                                      alt="Elyana Insyirah"
                                      class="profile-photo"
@@ -80,7 +106,6 @@
                             </div>
                         </div>
 
-                        <!-- Stat chips -->
                         <div class="stat-chips">
                             <span class="chip">📍 Perak, Malaysia</span>
                             <span class="chip">🎓 B.CS Network Security</span>
@@ -89,14 +114,11 @@
                             <span class="chip">💰 Expected RM 1,500 – 2,000 / month</span>
                         </div>
 
-                        <!-- Social icons -->
-                        <ul class="icons">
+                        <ul class="icons" style="margin-bottom: 0.5rem;">
                             <li><a href="https://www.linkedin.com/in/elyana-insyirah-b68bb33b1" class="icon brands fa-linkedin-in" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
                             <li><a href="https://github.com/Yuu12-beep" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">GitHub</span></a></li>
                         </ul>
 
-                        <!-- Resume download button -->
-                        <!-- Replace 'files/resume.pdf' with the actual path to your resume file -->
                         <a href="files/resume.pdf" download="Elyana_Insyirah_Resume.pdf" class="button primary resume-btn">
                             <span class="icon fa-download"></span> &nbsp;Download Resume
                         </a>
@@ -118,9 +140,6 @@
 
             <div id="main">
 
-                <!-- ══════════════════════════════════════
-                     CAREER EXPLORATION
-                ══════════════════════════════════════ -->
                 <article id="exploration">
                     <h2 class="major">Career Exploration</h2>
                     <span class="image main"><img src="images/netsecanalyst.jpg" alt="Cybersecurity Monitoring" /></span>
@@ -160,9 +179,6 @@
                     </ul>
                 </article>
 
-                <!-- ══════════════════════════════════════
-                     SKILLS ASSESSMENT
-                ══════════════════════════════════════ -->
                 <article id="skills">
                     <h2 class="major">Skills Assessment</h2>
                     <p>An honest self-assessment of where I currently stand against what the industry expects of a Network Security Analyst, based on coursework, academic labs, and personal projects.</p>
@@ -196,10 +212,6 @@
                     <div class="skill-bar-wrap">
                         <div class="skill-bar-label"><span>Database Engineering (SQL / XAMPP)</span><span>70%</span></div>
                         <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-bar-label"><span>Python / Shell Scripting</span><span>55%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div>
                     </div>
 
                     <h3>Soft Skills</h3>
@@ -275,9 +287,6 @@
                     </ul>
                 </article>
 
-                <!-- ══════════════════════════════════════
-                     DEVELOPMENT PLAN
-                ══════════════════════════════════════ -->
                 <article id="development">
                     <h2 class="major">Development Plan</h2>
                     <span class="image main"><img src="images/best-network-security-tools.jpg" alt="Development Frameworks" /></span>
@@ -348,9 +357,6 @@
                     </ul>
                 </article>
 
-                <!-- ══════════════════════════════════════
-                     EVIDENCE OF LEARNING
-                ══════════════════════════════════════ -->
                 <article id="evidence">
                     <h2 class="major">Evidence of Learning</h2>
 
@@ -415,46 +421,112 @@
                     </ul>
                 </article>
 
-                <!-- ══════════════════════════════════════
-                     CERTIFICATES
-                ══════════════════════════════════════ -->
                 <article id="certificates">
                     <h2 class="major">Certificates</h2>
-                    <p>Professional technical qualifications and specialised industry training completions:</p>
+                    <p>Professional technical qualifications and specialised industry training completions (click on any card to view the full certificate):</p>
 
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr><th>Qualification</th><th>Issuing Body</th><th>Status</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Cisco Certified Network Associate (CCNA)</strong><br/><small>Switching, Routing &amp; Wireless — academic foundation</small></td>
-                                    <td>Cisco</td>
-                                    <td>✅ Completed</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>CompTIA Security+</strong><br/><small>Professional development milestone</small></td>
-                                    <td>CompTIA</td>
-                                    <td>🎯 In Progress</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Digital Forensics — Lab Practical</strong><br/><small>Autopsy, FTK Imager — full disk investigation</small></td>
-                                    <td>UniSZA Academic</td>
-                                    <td>✅ Completed</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Static Malware Analysis — Lab Practical</strong><br/><small>PE analysis toolchain, threat reporting</small></td>
-                                    <td>UniSZA Academic</td>
-                                    <td>✅ Completed</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Database Engineering — Lab Practical</strong><br/><small>SQL Server, XAMPP data environments</small></td>
-                                    <td>UniSZA Academic</td>
-                                    <td>✅ Completed</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="cert-grid">
+                        
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_ccna.jpg" alt="Cisco CCNA Certificate" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Cisco Certified Network Associate (CCNA)</h4>
+                                <p class="cert-desc">Switching, Routing &amp; Wireless — Enterprise Infrastructure Academic Foundation.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_secplus.jpg" alt="CompTIA Security+" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">CompTIA Security+</h4>
+                                <p class="cert-desc">Global Baseline Cybersecurity Validation Milestone &amp; Active Threat Management Frameworks.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_forensics.jpg" alt="Digital Forensics Lab" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Digital Forensics — Lab Practical</h4>
+                                <p class="cert-desc">UniSZA Academic Completion. Full host disk data carved via Autopsy &amp; FTK Imager environments.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_malware.jpg" alt="Static Malware Analysis" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Static Malware Analysis — Lab Practical</h4>
+                                <p class="cert-desc">UniSZA Academic Completion. Execution-free PE analysis toolchains, hash auditing, and threat parsing.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_database.jpg" alt="Database Engineering" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Database Engineering — Lab Practical</h4>
+                                <p class="cert-desc">UniSZA Academic Completion. Query execution matrices, relational schemas, and data management in MS SQL &amp; XAMPP.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_netsec.jpg" alt="Network Security Lab" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Advanced Network Security Implementation</h4>
+                                <p class="cert-desc">Validation of edge-traversal perimeter security layout, firewall policy auditing, and adaptive ACL routing parameters.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_pentest.jpg" alt="Penetration Testing" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Infrastructure Penetration Testing Frameworks</h4>
+                                <p class="cert-desc">Controlled lab exploitation procedures across system bounds using Kali Linux configurations and information capture scripts.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_hacking.jpg" alt="Ethical Hacking Foundation" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Ethical Hacking Foundations</h4>
+                                <p class="cert-desc">Vulnerability mapping benchmarks, web-application surface logic validation, and basic scanning operations.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_linux.jpg" alt="Linux Admin" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Linux System Administration Core</h4>
+                                <p class="cert-desc">Shell environments mastery, access management schemes, security partitioning controls, and system file system automation.</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-img-wrap">
+                                <img src="images/cert_cloud.jpg" alt="Cloud Security" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                            </div>
+                            <div class="cert-meta">
+                                <h4 class="cert-title">Cloud Security Fundamentals &amp; Architecture</h4>
+                                <p class="cert-desc">Introduction to Zero-Trust infrastructure parameters, software-defined networks, and cloud access routing perimeters.</p>
+                            </div>
+                        </div>
+
                     </div>
 
                     <br />
@@ -464,9 +536,6 @@
                     </ul>
                 </article>
 
-                <!-- ══════════════════════════════════════
-                     REFLECTION
-                ══════════════════════════════════════ -->
                 <article id="reflection">
                     <h2 class="major">Reflection</h2>
 
@@ -513,9 +582,6 @@
                     </ul>
                 </article>
 
-                <!-- ══════════════════════════════════════
-                     CONTACT
-                ══════════════════════════════════════ -->
                 <article id="contact">
                     <h2 class="major">Contact</h2>
                     <p>Feel free to reach out through any of the following channels for technical inquiries or professional opportunities:</p>
@@ -547,11 +613,39 @@
 
         <div id="bg"></div>
 
+        <div id="cert-modal" class="cert-modal-overlay">
+            <span class="cert-modal-close">&times;</span>
+            <img class="cert-modal-content" id="cert-modal-img" src="" alt="Certificate View">
+            <div id="cert-modal-caption"></div>
+        </div>
+
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/browser.min.js"></script>
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('.cert-item').on('click', function() {
+                    var imgSrc = $(this).find('img').attr('src');
+                    var title = $(this).find('.cert-title').text();
+                    var desc = $(this).find('.cert-desc').text();
+                    
+                    // Inject clicked card details into modal fields
+                    $('#cert-modal-img').attr('src', imgSrc);
+                    $('#cert-modal-caption').html('<strong>' + title + '</strong><br>' + desc);
+                    $('#cert-modal').addClass('active');
+                });
+
+                // Dismiss lightbox upon clicking close cross or background mask
+                $('#cert-modal, .cert-modal-close').on('click', function(e) {
+                    if (e.target !== document.getElementById('cert-modal-img')) {
+                        $('#cert-modal').removeClass('active');
+                    }
+                });
+            });
+        </script>
 
     </body>
 </html>
