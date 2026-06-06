@@ -33,7 +33,6 @@
             /* ── Profile row ── */
             .profile-row { display:flex; align-items:center; justify-content: center; gap:1.5rem; margin-bottom:1rem; text-align:left; }
             .profile-photo-wrap { flex-shrink:0; }
-            /* Updated to 160px */
             .profile-photo { width:160px; height:160px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.3); display:block; margin: 0 auto; }
             .profile-placeholder { width:160px; height:160px; border-radius:50%; border:2px dashed rgba(255,255,255,.35); background:rgba(255,255,255,.05); flex-direction:column; align-items:center; justify-content:center; gap:.3rem; color:rgba(255,255,255,.45); font-size:.7rem; text-align:center; cursor:default; margin: 0 auto; }
             .profile-placeholder .icon { font-size:2.5rem; opacity:.5; }
@@ -55,38 +54,14 @@
             .cert-title { font-weight: 700; font-size: 0.9rem; margin: 0 0 0.4rem 0; line-height: 1.3; color: #fff; letter-spacing: 0.05em; }
             .cert-desc { font-size: 0.78rem; opacity: 0.65; margin: 0; line-height: 1.4; }
 
-            /* ── NEW: Horizontal 3-Page Scroll Setup ── */
-            .cert-img-wrap.scrollable {
-                justify-content: flex-start;
-                overflow-x: auto;
-                overflow-y: hidden;
-                scroll-snap-type: x mandatory;
-                scroll-behavior: smooth;
-                -webkit-overflow-scrolling: touch;
-            }
-            .cert-img-wrap.scrollable img {
-                flex: 0 0 100%;
-                scroll-snap-align: center;
-            }
-            .cert-img-wrap.scrollable::-webkit-scrollbar {
-                height: 6px;
-            }
-            .cert-img-wrap.scrollable::-webkit-scrollbar-track {
-                background: rgba(255, 255, 255, 0.05);
-                border-radius: 4px;
-            }
-            .cert-img-wrap.scrollable::-webkit-scrollbar-thumb {
-                background: rgba(111, 195, 223, 0.5);
-                border-radius: 4px;
-            }
-            .cert-img-wrap.scrollable::-webkit-scrollbar-thumb:hover {
-                background: rgba(111, 195, 223, 0.8);
-            }
-
             /* ── Lightbox Modal ── */
             .cert-modal-overlay { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(6px); align-items: center; justify-content: center; flex-direction: column; opacity: 0; transition: opacity 0.3s ease; }
             .cert-modal-overlay.active { display: flex; opacity: 1; }
             .cert-modal-content { margin: auto; display: block; max-width: 85%; max-height: 70%; border-radius: 4px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.1); }
+            
+            /* PDF Modal Styling */
+            #cert-modal-pdf { width: 80vw; height: 75vh; background: #fff; }
+
             .cert-modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: 300; transition: 0.2s; cursor: pointer; line-height: 1; }
             .cert-modal-close:hover { color: #6fc3df; }
             #cert-modal-caption { margin: 15px auto auto auto; width: 80%; max-width: 700px; text-align: center; color: #fff; font-size: 0.95rem; line-height: 1.5; }
@@ -99,6 +74,7 @@
                 .chip { font-size: 0.75rem; padding: 0.3rem 0.7rem; }
                 .cert-grid { grid-template-columns: 1fr; gap: 1.2rem; }
                 .cert-img-wrap { height: 170px; }
+                #cert-modal-pdf { width: 95vw; height: 80vh; }
             }
         </style>
     </head>
@@ -585,25 +561,13 @@
                             </div>
                         </div>
 
-                        <div class="cert-item">
+                        <div class="cert-item" data-pdf="images/Sem4.pdf">
                             <div class="cert-img-wrap">
-                                <img src="images/Sem4.png" alt="Dean's List (Semester 4)" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
+                                <img src="images/ResultSEM1to5.pdf" alt="Dean's List (Semester 4) Thumbnail" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
                             </div>
                             <div class="cert-meta">
                                 <h4 class="cert-title">Dean's List (Semester 4)</h4>
-                                <p class="cert-desc">Listed among the top students of the semester.</p>
-                            </div>
-                        </div>
-
-                        <div class="cert-item">
-                            <div class="cert-img-wrap scrollable">
-                                <img src="images/ResultSEM1to5_page-0001.jpg" alt="Dean's List (Semester 4) - Page 1" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
-                                <img src="images/ResultSEM1to5_page-0002.jpg" alt="Dean's List (Semester 4) - Page 2" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
-                                <img src="images/ResultSEM1to5_page-0003.jpg" alt="Dean's List (Semester 4) - Page 3" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236fc3df\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\'></path><polyline points=\'14 2 14 8 20 8\'></polyline><line x1=\'16\' y1=\'13\' x2=\'8\' y2=\'13\'></line><line x1=\'16\' y1=\'17\' x2=\'8\' y2=\'17\'></line><polyline points=\'10 9 9 9 8 9\'></polyline></svg>';" />
-                            </div>
-                            <div class="cert-meta">
-                                <h4 class="cert-title">Results for Degree (Semesters 1-5)</h4>
-                                <p class="cert-desc">Full Results for Degree (Semesters 1-5). <br><small><em>(Swipe or scroll horizontally to view all 3 pages)</em></small></p>
+                                <p class="cert-desc">Listed among the top students of the semester. <br><small><em>(Click to open PDF viewer)</em></small></p>
                             </div>
                         </div>
 
@@ -706,6 +670,7 @@
         <div id="cert-modal" class="cert-modal-overlay">
             <span class="cert-modal-close">&times;</span>
             <img class="cert-modal-content" id="cert-modal-img" src="" alt="Certificate View">
+            <iframe class="cert-modal-content" id="cert-modal-pdf" src="" style="display:none; border:none; background:white;"></iframe>
             <div id="cert-modal-caption"></div>
         </div>
 
@@ -720,10 +685,21 @@
                 // Click a card to open lightbox popup
                 $('.cert-item').on('click', function(e) {
                     var imgSrc = $(this).find('img').attr('src');
+                    var pdfSrc = $(this).attr('data-pdf'); // Checks if the card has a PDF attached
                     var title = $(this).find('.cert-title').text();
                     var desc = $(this).find('.cert-desc').text();
                     
-                    $('#cert-modal-img').attr('src', imgSrc);
+                    if (pdfSrc) {
+                        // It's a PDF: Hide the image element, show the iframe and load the PDF
+                        $('#cert-modal-img').hide();
+                        // '#toolbar=1&navpanes=0&view=FitH' tells the browser to display a clean PDF UI
+                        $('#cert-modal-pdf').attr('src', pdfSrc + '#toolbar=1&navpanes=0&view=FitH').show();
+                    } else {
+                        // It's an Image: Hide the iframe, show the image element
+                        $('#cert-modal-pdf').hide().attr('src', ''); // Clear iframe source to save memory
+                        $('#cert-modal-img').attr('src', imgSrc).show();
+                    }
+                    
                     $('#cert-modal-caption').html('<strong>' + title + '</strong><br>' + desc);
                     $('#cert-modal').addClass('active');
                     
@@ -734,8 +710,9 @@
 
                 // Dismiss lightbox modal on close click or outer background wrap mask click
                 $('#cert-modal, .cert-modal-close').on('click', function(e) {
-                    if (e.target !== document.getElementById('cert-modal-img')) {
+                    if (e.target !== document.getElementById('cert-modal-img') && e.target !== document.getElementById('cert-modal-pdf')) {
                         $('#cert-modal').removeClass('active');
+                        $('#cert-modal-pdf').attr('src', ''); // Stop the PDF rendering when modal is closed
                     }
                     
                     // Stop Dimension's background click listener from returning home
