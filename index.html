@@ -511,13 +511,15 @@
                 // 2. View Report Button Click Handler (Projects)
                 $('.view-report-btn').on('click', function(e) {
                     var pdfSrc = $(this).attr('data-pdf');
-                    var title = $(this).closest('ul').siblings('h4').text() || "Project Report";
-                    var desc = "Technical Project Report & Documentation Overview";
                     
                     if (pdfSrc) {
                         $('#cert-modal-img').hide();
                         $('#cert-modal-pdf').attr('src', pdfSrc + '#toolbar=1&navpanes=0&view=FitH').show();
-                        $('#cert-modal-caption').html('<strong>' + title + '</strong><br>' + desc);
+                        
+                        // REMOVED the code that was generating the giant text chunk. 
+                        // It will now just display the PDF cleanly with an empty caption.
+                        $('#cert-modal-caption').empty();
+                        
                         $('#cert-modal').addClass('active');
                     }
                     
