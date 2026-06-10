@@ -31,7 +31,6 @@
             .tool-tag { background:rgba(111,195,223,.15); border:1px solid rgba(111,195,223,.4); color:#b8e0f0; border-radius:4px; padding:.25rem .65rem; font-size:.78rem; }
 
             /* ── Profile row ── */
-            /* Updated to column layout, centered, with larger picture */
             .profile-row { display:flex; flex-direction:column; align-items:center; justify-content: center; gap:1.2rem; margin-bottom:1.5rem; text-align:center; }
             .profile-photo-wrap { flex-shrink:0; }
             .profile-photo { width:220px; height:220px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.3); display:block; margin: 0 auto; }
@@ -61,22 +60,26 @@
             .cert-modal-content { margin: auto; display: block; max-width: 85%; max-height: 70%; border-radius: 4px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.1); }
             
             /* PDF Modal Styling */
-            #cert-modal-pdf { width: 80vw; height: 75vh; background: #fff; }
-
+            #cert-modal-pdf, #project-modal-pdf { width: 80vw; height: 75vh; background: #fff; }
             .cert-modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: 300; transition: 0.2s; cursor: pointer; line-height: 1; }
             .cert-modal-close:hover { color: #6fc3df; }
             #cert-modal-caption { margin: 15px auto auto auto; width: 80%; max-width: 700px; text-align: center; color: #fff; font-size: 0.95rem; line-height: 1.5; }
 
+            /* ── Project Dynamic Transitions & Sliders ── */
+            .project-slider { position: relative; width: 100%; overflow: hidden; display: block; margin-bottom: 2rem; }
+            .project-slider img { width: 100%; display: none; object-fit: cover; transition: opacity 0.8s ease-in-out; }
+            .project-slider img.active { display: block; }
+
             /* Responsive Adjustments */
             @media screen and (max-width: 736px) {
                 .profile-row { flex-direction: column; text-align: center; gap: 1rem; }
-                .profile-photo, .profile-placeholder { width: 180px; height: 180px; } /* Ensures it scales down slightly on phones */
+                .profile-photo, .profile-placeholder { width: 180px; height: 180px; }
                 .profile-info h1 { font-size: 1.25rem; }
                 .stat-chips { gap: 0.4rem; margin: 1rem 0; }
                 .chip { font-size: 0.75rem; padding: 0.3rem 0.7rem; }
                 .cert-grid { grid-template-columns: 1fr; gap: 1.2rem; }
                 .cert-img-wrap { height: 170px; }
-                #cert-modal-pdf { width: 95vw; height: 80vh; }
+                #cert-modal-pdf, #project-modal-pdf { width: 95vw; height: 80vh; }
             }
         </style>
     </head>
@@ -364,9 +367,11 @@
                     <h2 class="major">Projects</h2>
 
                     <h3>Evidence of Learning</h3>
-                    <p>Click on "Explore Repository" to be directed to GitHub and view the full code and documentation for each project.</p>
+                    <p>Click on "Explore Repository" to view full code and documentation on GitHub, or click "View Report" to read the PDF report directly on this page.</p>
 
-                    <span class="image main"><img src="images/Screenshot 2026-06-04 112843.png" alt="Hospital Network Resilience Project" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/Screenshot 2026-06-04 112843.png" alt="Hospital Network Resilience Project" class="active" />
+                        </span>
                     <h4>Enhancing Hospital Network Resilience using Redundancy Protocols</h4>
                     <p>An empirical performance study evaluating healthcare delivery network infrastructure using Cisco Packet Tracer. Simulated recovery windows by testing <strong>HSRP</strong> and <strong>RSTP</strong> redundancy configurations against traditional non-redundant core topologies — demonstrating measurable improvements in failover time and uptime continuity for critical medical operations.</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
@@ -377,9 +382,12 @@
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/Enhancing-Hospital-Network-Resilience-using-Redundancy-Protocols." class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="images/Traffic_Analysis_Report.pdf">View Report</button></li>
                     </ul>
 
-                    <span class="image main"><img src="images/wireshark.png" alt="Wireshark Project" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/wireshark.png" alt="Wireshark Project" class="active" />
+                    </span>
                     <h4>Network Traffic Analysis with Wireshark</h4>
                     <p>A network traffic capture and analysis project focused on inspecting protocol layers and analyzing protocol security vulnerabilities using Wireshark. This project demonstrates the extraction of plaintext credentials from unencrypted traffic (FTP and HTTP) and evaluates the weaknesses of HTTP Basic Authentication</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
@@ -390,9 +398,12 @@
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/NETWORK-TRAFFIC-CAPTURE-AND-ANALYSIS-USING-WIRESHARK" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="reports/Wireshark_Analysis_Report.pdf">View Report</button></li>
                     </ul>
 
-                    <span class="image main"><img src="images/MalwareAnalysis.png" alt="Static Malware Analysis" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/MalwareAnalysis.png" alt="Static Malware Analysis" class="active" />
+                    </span>
                     <h4>Static Malware Analysis</h4>
                     <p>Performed thorough static analysis of malware samples <em>without executing them</em>, using a professional toolchain to examine PE headers, imported DLLs, embedded strings, and structural indicators of compromise. Produced detailed technical reports on each sample's probable behaviour and threat classification.</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
@@ -403,9 +414,12 @@
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/Static-Malware-Analysis" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="reports/Malware_Analysis_Report.pdf">View Report</button></li>
                     </ul>
 
-                    <span class="image main"><img src="images/Autopsy.png" alt="Autopsy" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/Autopsy.png" alt="Autopsy" class="active" />
+                    </span>
                     <h4>Digital Forensics (Disk Analysis) with Autopsy and BCText Encoder</h4>
                     <p>Utilized Autopsy, a comprehensive digital forensics platform, to conduct detailed disk analysis and recover deleted data from compromised systems. Performed timeline analysis, file carving, and artifact extraction to support incident response and legal proceedings.</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
@@ -414,9 +428,12 @@
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/Computer_Forensics_Disk_Analysis_Using_Autopsy" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="reports/Digital_Forensics_Report.pdf">View Report</button></li>
                     </ul>
 
-                    <span class="image main"><img src="images/OWASPJuiceShop.png" alt="OWASP Juice Shop" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/OWASPJuiceShop.png" alt="OWASP Juice Shop" class="active" />
+                    </span>
                     <h4>Penetration Testing on Web Application (OWASP Juice Shop)</h4>
                     <p>Conducted comprehensive security testing of the OWASP Juice Shop, identifying vulnerabilities and providing remediation recommendations. Utilized various tools and techniques to assess the application's resilience against common web application attacks.</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
@@ -428,43 +445,52 @@
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/Penetration_Testing_Juice_Box_Report" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="reports/Penetration_Testing_Report.pdf">View Report</button></li>
                     </ul>
 
-                    <span class="image main"><img src="images/MACSpoofing.png" alt="MAC Spoofing" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/MACSpoofing.png" alt="MAC Spoofing" class="active" />
+                    </span>
                     <h4>MAC Spoofing</h4>
                     <p>Explored the concept of MAC address spoofing, a technique used to disguise the unique hardware identifier of a network interface card (NIC). This analysis involved understanding the implications of MAC spoofing in network security and its potential misuse.</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
                         <span class="tool-tag">Kali Linux</span>
                         <span class="tool-tag">Technitium MAC Address Changer</span>
                         <span class="tool-tag">MAC Spoofing</span>
-
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/MAC_Spoofing_in_Kali_and_Windows" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="reports/MAC_Spoofing_Analysis.pdf">View Report</button></li>
                     </ul>
 
-                    <span class="image main"><img src="images/DigiEvidHandling.png" alt="Digital Evidence Handling" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/DigiEvidHandling.png" alt="Digital Evidence Handling" class="active" />
+                    </span>
                     <h4>Digital Evidence Handling</h4>
                     <p>Explored the principles and practices of digital evidence handling, focusing on the proper collection, preservation, and analysis of electronic data for legal proceedings. This study emphasized the importance of maintaining the integrity and admissibility of digital evidence.</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
                         <span class="tool-tag">Theoretical</span>
-
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/DIGITAL_EVIDENCE" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="reports/Digital_Evidence_Handling.pdf">View Report</button></li>
                     </ul>
 
-                    <span class="image main"><img src="images/smarthandwash2.png" alt="Smart Hand Wash" /></span>
+                    <span class="image main project-slider">
+                        <img src="images/smarthandwash2.png" alt="Smart Hand Wash" class="active" />
+                        <img src="images/blynk.png" alt="blynk" />
+                        <img src="images/smarthandwash2.png" alt="Smart Hand Wash" />
+                    </span>
                     <h4>Smart Hand Washing System using Arduino with Blynk Dashboard</h4>
                     <p>Designed and implemented a smart hand washing system that promotes proper hygiene practices through detection of a hand that will then start counting down till 20. Buzzer will then ring. This project involved the integration of sensors, microcontrollers, and user interface elements to create an effective solution for hand hygiene improvement.</p>
                     <div class="tool-grid" style="margin-bottom:.8rem">
                         <span class="tool-tag">ESP8266</span>
                         <span class="tool-tag">Blynk Dashboard</span>
                         <span class="tool-tag">Arduino IDE</span>
-
                     </div>
                     <ul class="actions">
                         <li><a href="https://github.com/Yuu12-beep/DIGITAL_EVIDENCE" class="button primary" target="_blank" rel="noopener noreferrer">Explore Repository</a></li>
+                        <li><button class="button project-report-btn" data-pdf="reports/Smart_Handwash_Report.pdf">View Report</button></li>
                     </ul>
 
                     <br />
@@ -693,6 +719,11 @@
             <div id="cert-modal-caption"></div>
         </div>
 
+        <div id="project-pdf-modal" class="cert-modal-overlay">
+            <span class="project-modal-close cert-modal-close">&times;</span>
+            <iframe id="project-modal-pdf" class="cert-modal-content" src="" style="border:none; background:white;"></iframe>
+        </div>
+
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/browser.min.js"></script>
         <script src="assets/js/breakpoints.min.js"></script>
@@ -701,42 +732,70 @@
 
         <script>
             $(document).ready(function() {
-                // Click a card to open lightbox popup
+                // ── Certificate Lightbox Logic ──
                 $('.cert-item').on('click', function(e) {
                     var imgSrc = $(this).find('img').attr('src');
-                    var pdfSrc = $(this).attr('data-pdf'); // Checks if the card has a PDF attached
+                    var pdfSrc = $(this).attr('data-pdf');
                     var title = $(this).find('.cert-title').text();
                     var desc = $(this).find('.cert-desc').text();
                     
                     if (pdfSrc) {
-                        // It's a PDF: Hide the image element, show the iframe and load the PDF
                         $('#cert-modal-img').hide();
-                        // '#toolbar=1&navpanes=0&view=FitH' tells the browser to display a clean PDF UI
                         $('#cert-modal-pdf').attr('src', pdfSrc + '#toolbar=1&navpanes=0&view=FitH').show();
                     } else {
-                        // It's an Image: Hide the iframe, show the image element
-                        $('#cert-modal-pdf').hide().attr('src', ''); // Clear iframe source to save memory
+                        $('#cert-modal-pdf').hide().attr('src', '');
                         $('#cert-modal-img').attr('src', imgSrc).show();
                     }
                     
                     $('#cert-modal-caption').html('<strong>' + title + '</strong><br>' + desc);
                     $('#cert-modal').addClass('active');
                     
-                    // Prevent the click from registering on the article background
                     e.stopPropagation();
                     e.preventDefault();
                 });
 
-                // Dismiss lightbox modal on close click or outer background wrap mask click
                 $('#cert-modal, .cert-modal-close').on('click', function(e) {
                     if (e.target !== document.getElementById('cert-modal-img') && e.target !== document.getElementById('cert-modal-pdf')) {
                         $('#cert-modal').removeClass('active');
-                        $('#cert-modal-pdf').attr('src', ''); // Stop the PDF rendering when modal is closed
+                        $('#cert-modal-pdf').attr('src', '');
                     }
-                    
-                    // Stop Dimension's background click listener from returning home
                     e.stopPropagation();
                     e.preventDefault();
+                });
+
+                // ── Project Inline PDF Report Lightbox Logic ──
+                $('.project-report-btn').on('click', function(e) {
+                    e.preventDefault();
+                    var pdfReportPath = $(this).attr('data-pdf');
+                    if (pdfReportPath) {
+                        $('#project-modal-pdf').attr('src', pdfReportPath + '#toolbar=1&navpanes=0&view=FitH');
+                        $('#project-pdf-modal').addClass('active');
+                    }
+                    e.stopPropagation();
+                });
+
+                $('#project-pdf-modal, .project-modal-close').on('click', function(e) {
+                    if (e.target !== document.getElementById('project-modal-pdf')) {
+                        $('#project-pdf-modal').removeClass('active');
+                        $('#project-modal-pdf').attr('src', '');
+                    }
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+
+                // ── Automatic Slideshow Engine (Cycles every 4 seconds) ──
+                $('.project-slider').each(function() {
+                    var $slider = $(this);
+                    var $slides = $slider.find('img');
+                    
+                    if ($slides.length > 1) {
+                        var currentIndex = 0;
+                        setInterval(function() {
+                            $slides.eq(currentIndex).removeClass('active');
+                            currentIndex = (currentIndex + 1) % $slides.length;
+                            $slides.eq(currentIndex).addClass('active');
+                        }, 4000);
+                    }
                 });
             });
         </script>
